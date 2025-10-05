@@ -17,6 +17,8 @@ jobs:
 
       - name: Setup node.js, install dependencies
         uses: actions/setup-node@v5
+        with:
+          node-version: 18
 		
       - name: Run the linter
         run: npm run lint
