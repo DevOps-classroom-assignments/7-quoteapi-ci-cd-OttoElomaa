@@ -1,0 +1,26 @@
+name: CI for Pushes and Pull Requests
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout the repository code
+        uses: actions/checkout@v5
+
+      - name: Setup node.js, install dependencies
+        uses: actions/setup-node@v5
+		
+      - name: Run the linter
+        run: npm run lint
+
+      - name: Run the tests
+        run: npm test
+
