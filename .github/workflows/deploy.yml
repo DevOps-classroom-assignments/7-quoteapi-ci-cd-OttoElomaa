@@ -7,9 +7,23 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    steps:
-      - name: step1
-        run: echo "idk"
-		
-      - name: step2
-        run: echo "there will be cool commands here"
+      steps:
+      - name: Checkout the repository code
+        uses: actions/checkout@v5
+
+      - name: Setup node.js, install dependencies
+        uses: actions/setup-node@v5
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run the linter
+        run: npm run lint
+
+      - name: Run the tests
+        run: npm test
+
+      - name: Deploy to render
+        env:
+          deploy_url: ${{ secrets.RENDER_DEPLOY_HOOK }}
+        run: curl https://api.render.com/deploy/{deploy_url}
