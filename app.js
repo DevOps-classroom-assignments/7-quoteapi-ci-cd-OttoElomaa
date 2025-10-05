@@ -5,7 +5,7 @@ const app = express();
 
 app.get('/quote',(req,res)=>{
     const randomIndex = Math.floor(Math.random() * quotes.length);
-    res.json({quote: quotes[randomIndex], version_message: "This version should not be visible in Render"});
+    res.json({quote: quotes[randomIndex], version_message: "This version should be visible in Render! :D"});
 });
 
 const PORT = process.env.PORT || 3000;
